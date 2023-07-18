@@ -60,6 +60,8 @@ function Textform(props) {
       var text=document.getElementById("exampleFormControlTextarea1")
       text.select();
       navigator.clipboard.writeText(text.value);
+      document.getSelection().removeAllRanges();
+
     }; 
     const handleextraspaces =()=>{
       let newtext = text.split(/[ ]+/); 
@@ -81,33 +83,33 @@ function Textform(props) {
             style={{background: props.mode ==="dark" ? "black":"light"}}
           ></textarea>
         </div>
-        <button className="btn btn-primary mx-1" onClick={handleUpClick}>
+        <button disabled={text.length===0} className="btn btn-primary mx-1" onClick={handleUpClick}>
           Into uppercase
         </button>
-        <button className="btn btn-secondary mx-1" onClick={handlelowClick}>
+        <button disabled={text.length===0} className="btn btn-secondary mx-1" onClick={handlelowClick}>
           Into lowercase
         </button>
-        <button className="btn btn-success mx-1" onClick={handleclrClick}>
+        <button disabled={text.length===0}  className="btn btn-success mx-1" onClick={handleclrClick}>
           Clear text
         </button>
-        <button className="btn btn-danger mx-1" onClick={handleemailClick}>
+        <button disabled={text.length===0} className="btn btn-danger mx-1" onClick={handleemailClick}>
           Email conversion
         </button>
-        <button className="btn btn-info mx-1" onClick={handlecapitalClick}>
+        <button disabled={text.length===0} className="btn btn-info mx-1" onClick={handlecapitalClick}>
           Capitalization
         </button>
-        <button className="btn btn-light mx-1" onClick={ handleextraspaces}>
+        <button disabled={text.length===0} className="btn btn-light mx-1" onClick={ handleextraspaces}>
           Remove extra spaces
         </button>
-        <button className="btn btn-dark mx-1" onClick={handlecopyClick}>
+        <button disabled={text.length===0} className="btn btn-dark mx-1" onClick={handlecopyClick}>
           Copy text
         </button>
-        <button className="btn btn-warning mx-1" onClick={speak} >Speak</button>
+        <button disabled={text.length===0} className="btn btn-warning mx-1" onClick={speak} >Speak</button>
       </div >
       <div className={`container my-3 text-${props.mode ==="light" ? "dark":"light"}`} >
         <h2>Your Text Summary</h2>
         <p >
-          {countWords(text)} <b>words</b>, {text.length} <b>characters{" "}</b>, {0.008*text.split(" ").length} <b>Minutes to read</b>
+          {countWords(text)} <b>words</b>, {text.length} <b>characters{" "}</b>, {0.008*text.split(" ").filter((word) => word !== "").length.length} <b>Minutes to read</b>
         </p>
         <h2>Preview</h2>
         <p>{text.length>0 ? text:"Enter something in the textbox above to preview it here."} </p>
