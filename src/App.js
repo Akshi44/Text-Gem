@@ -30,6 +30,7 @@ function App() {
     }, 1500);
   };
   const [mode, setMode] = useState("light");
+ 
   const toggleMode = () => {
     if (mode === "light") {
       setMode("dark");
@@ -99,3 +100,8 @@ function App() {
 }
  
 export default App;
+
+
+
+
+

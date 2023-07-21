@@ -57,10 +57,7 @@ function Textform(props) {
   }
 
     const handlecopyClick = () => {
-      var text=document.getElementById("exampleFormControlTextarea1")
-      text.select();
-      navigator.clipboard.writeText(text.value);
-      document.getSelection().removeAllRanges();
+      navigator.clipboard.writeText(text);
 
     }; 
     const handleextraspaces =()=>{
@@ -109,8 +106,9 @@ function Textform(props) {
       <div className={`container my-3 text-${props.mode ==="light" ? "dark":"light"}`} >
         <h2>Your Text Summary</h2>
         <p >
-          {countWords(text)} <b>words</b>, {text.length} <b>characters{" "}</b>, {0.008*text.split(" ").filter((word) => word !== "").length.length} <b>Minutes to read</b>
-        </p>
+          {countWords(text)} <b>words</b>, {text.length} <b>characters{" "}</b>, {0.008*text.split(" ").length} <b>Minutes to read</b>
+          {/* {text.split(/\s+/).length} <b>words</b>, {text.length} <b>characters{" "}</b>, {0.008*text.split(" ").length} <b>Minutes to read</b> */}
+        </p> 
         <h2>Preview</h2>
         <p>{text.length>0 ? text:"Enter something in the textbox above to preview it here."} </p>
       </div>
